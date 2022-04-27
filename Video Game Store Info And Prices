@@ -1,0 +1,20 @@
+CREATE TABLE videogamestore (id INTEGER PRIMARY KEY, name TEXT, system TEXT, genre TEXT, price INTEGER );
+INSERT INTO videogamestore VALUES (1, "Metroid Dread", "Nintendo Switch", "Action", 60);
+INSERT INTO videogamestore VALUES (2, "Nintendo Switch Sports", "Nintendo Switch", "Sports", 40);
+INSERT INTO videogamestore VALUES (3, "Ring Fit Adventure", "Nintendo Switch", "Fitness", 70);
+INSErt INTO videogamestore VALUES (4, "Pokemon X", "3DS", "RPG", 35);
+INSERT INTO videogamestore VALUES (5, "Breath Of The Wild", "Nintendo Switch", "Adventure RPG", 60);
+INSERT INTO videogamestore VALUES (6, "Final Fantasy 13", "PS3", "JRPG", 10);
+INSERT INTO videogamestore VALUES (7, "Earthbound", "SNES", "JRPG", 200);
+INSERT INTO videogamestore VALUES (8, "Space Station Silicon Valley", "N64", "Adventure Puzzler", 80);
+INSERT INTO videogamestore VALUES (9, "Castlevania: Lament of Innocence", "PS2", "Action", 25);
+INSERT INTO videogamestore VALUES (10, "Celeste", "Multi-Platform", "Platformer", 20);
+INSERT INTO videogamestore VALUES (11, "Scott Pilgrim", "Multi-Platform", "Beat 'em Up", 5);
+INSERT INTO videogamestore VALUES (12, "Minecraft", "PC", "Sandbox", 30);
+INSERT INTO videogamestore VALUES (13, "Fortnite", "Multi-Platform", "Shooter", 0);
+INSERT INTO videogamestore VALUES (14, "Luigi's Mansion 2", "3DS", "Adventure", 35);
+INSERT INTO videogamestore VALUES (15, "Chrono Trigger", "SNES", "JRPG", 50);
+
+SELECT * FROM videogamestore ORDER BY price;
+SELECT AVG(price) FROM videogamestore;
+SELECT SUM(price) FROM videogamestore;
