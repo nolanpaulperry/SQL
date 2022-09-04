@@ -1,3 +1,3 @@
 # Nolan Perry's SQL Portfolio
 
-## My portfolio contains data about video games, which console they were released with, the genre of game, and how much each game costs today. The data is portrayed using SQL code I wrote. Let me know if you have any questions regarding the data! My email is nolanpaulperry@gmail.com
+## This repository contains SQL code I've written for different projects. Feel free to contact me if you have any questions or comments regarding the content! My email is nolanpaulperry@gmail.com
