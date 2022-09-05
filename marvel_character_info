@@ -74,4 +74,3 @@ GROUP BY hometown;
 SELECT name, MAX(height_m) AS "max height", hometown
 FROM marvels
 GROUP BY hometown;
-
