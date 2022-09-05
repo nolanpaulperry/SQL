@@ -1,4 +1,4 @@
---Create a database for a store that sells video games. Some prices are average cost on eBay.
+--Creating a database for an imaginary store that sells video games. Some prices are based on the average cost on eBay.
 
 CREATE TABLE videogamestore (id INTEGER PRIMARY KEY, name TEXT, system TEXT, genre TEXT, price INTEGER );
 
