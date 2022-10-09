@@ -1,50 +1,45 @@
--- I wrote this SQL code to answer several questions regarding sales from different locations and time periods, provided by Charlotte Chaze.
+-- I wrote this SQL code to answer several questions regarding sales from different locations and time periods. DB provided by Charlotte Chaze.
 
 
 
 -- How many orders were placed in January?
 
-SELECT SUM(Quantity) AS TotalSales
-FROM BIT_DB.JanSales;
-
+ SELECT COUNT(orderID) AS Total_Sales
+ FROM BIT_DB.JanSales;
+ 
 -- How many of those orders were for an iPhone?
 
-SELECT SUM(Quantity) AS iPhoneSales
+SELECT COUNT(orderID) AS total_iphone_sales
 FROM BIT_DB.JanSales
-WHERE Product="iPhone";
+WHERE Product = "iPhone";
 
 -- Select the customer account numbers for all the orders that were placed in February.
 
-SELECT c.acctnum
+SELECT acctnum
 FROM BIT_DB.customers c
-RIGHT JOIN BIT_DB.FebSales fs
-ON c.order_id=fs.orderID;
+LEFT JOIN BIT_DB.FebSales f
+ON c.order_id=f.orderID;
 
---Which product was the cheapest one sold in January, and what was the price?
+-- Which product was the cheapest one sold in January, and what was the price?
 
-SELECT distinct Product, MIN(price) as min_price
-FROM JanSales
+SELECT distinct Product, MIN(price)
+FROM BIT_DB.FebSales
+GROUP BY Product
+ORDER BY price
 LIMIT 1;
 
---What is the total revenue for each product sold in January?
+-- What is the total revenue for each product sold in January?
 
-SELECT Product, (price * SUM(Quantity)) AS total_revenue
+SELECT Product, ROUND(SUM(Quantity * price)) AS Total_Revenue
 FROM BIT_DB.JanSales
 GROUP BY Product;
 
--- Which products were sold in February at 548 Lincoln st, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+-- Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
 
-SELECT Product, Quantity, (price * Quantity) AS total_revenue
+SELECT Product, Quantity, ROUND(SUM(Quantity * price)) AS Revenue
 FROM BIT_DB.FebSales
-WHERE location="548 Lincoln St, Seattle, WA 98101";
-
--- How many customers ordered more than 2 products at a time in February, and what was the afverage amount spent for those customers?
-
-SELECT COUNT(acctnum) AS cust_amt, Quantity, price, AVG(Quantity * price) AS avg_spent
-FROM BIT_DB.customers c
-LEFT JOIN BIT_DB.FebSales fs
-ON c.order_id=fs.orderID
-WHERE Quantity >= 2;
+WHERE location LIKE "548 Lincoln St, Seattle%"
+GROUP BY Product;
 
 -- List all the products sold in Los Angeles in February, and include how many of each were sold.
 
