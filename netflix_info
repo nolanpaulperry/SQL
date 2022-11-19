@@ -1,12 +1,7 @@
 -- In this SQL code I will be querying from a table containing data about netflix to answer various questions regarding that data.
 
 -- How many movie titles are there in the database? (movies only, not tv shows)
-SELECT *
-FROM "CharlotteChaze/BreakIntoTech"."netflix_people" np
-LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" nt
-ON np.show_id=nt.show_id;
 
--- When was the most recent batch of tv shows and/or movies added to the database?
 SELECT count(type) AS title_count
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
 WHERE type = 'Movie';
