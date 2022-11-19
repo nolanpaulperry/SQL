@@ -1,28 +1,51 @@
--- In this SQL code I will be querying from a table containing data about netflix to answer various questions regarding that data.
+/* The following queries were written to answer questions regarding data about Netflix people and Netflix Titles Info.
+The database was provided by Charlotte Chaze via bit.io, using PostgreSQL. */
+
+
 
 -- How many movie titles are there in the database? (movies only, not tv shows)
 
-SELECT count(type) AS title_count
-FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
-WHERE type = 'Movie';
+SELECT
+    COUNT
+        (i.show_id)
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people" p
+    JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" i
+    ON p.show_id = i.show_id
+WHERE type='Movie';
+-- Answer = 6131
 
 -- When was the most recent batch of tv shows and/or movies added to the database?
+
+SELECT *
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE date_added IS NOT NULL
+ORDER BY date_added DESC
+LIMIT 1;
+
 SELECT MAX(date(date_added))
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+-- Answer = 2021-09-25
 
 -- List all the movies and tv shows in alphabetical order.
+
 SELECT title
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
-ORDER BY title ASC;
+ORDER BY title DESC;
 
 -- Who was the Director for the movie Bright Star?
-SELECT director
-FROM "CharlotteChaze/BreakIntoTech"."netflix_people" np
-JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" nt
-ON np.show_id=nt.show_id
+
+SELECT director, title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" i
+    INNER JOIN "CharlotteChaze/BreakIntoTech"."netflix_people" p
+    ON i.show_id = p.show_id
 WHERE title='Bright Star';
+-- Answer = Jane Campion
 
 -- What is the oldest movie in the database and what year was it made?
+
 SELECT title, release_year
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
-ORDER BY release_year LIMIT 1;
+WHERE type = 'Movie'
+ORDER BY release_year ASC
+LIMIT 1;
+-- Answer = Prelude to War, 1942
