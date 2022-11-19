@@ -44,15 +44,15 @@ LIMIT 10;
 SELECT AVG(loudness) as avg_loudness
 FROM BIT_DB.Spotifydata
 WHERE (SELECT popularity
-FROM BIT_DB.Spotifydata
-ORDER BY popularity DESC
-LIMIT 10);
+      FROM BIT_DB.Spotifydata
+      ORDER BY popularity DESC
+      LIMIT 10);
 
 -- Do the 10 most popular songs have more speechiness, acousticness, instrumentalness, or liveness?
 
 SELECT AVG (speechiness) as avg_speechiness, AVG(acousticness) as avg_acousticness, AVG(instrumentalness) as avg_instrumentalness, AVG(liveness) as avg_liveness
 FROM BIT_DB.Spotifydata
 WHERE (SELECT popularity
-FROM BIT_DB.Spotifydata
-ORDER BY popularity DESC
-LIMIT 10);
+      FROM BIT_DB.Spotifydata
+      ORDER BY popularity DESC
+      LIMIT 10);
